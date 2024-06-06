@@ -21,6 +21,9 @@ module.exports = {
     'node_modules/(?!(axios)/)', // Add this line to transform ES modules in node_modules
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
+  moduleNameMapper: {
+    '\\.(css|less)$': '<rootDir>/styleMock.js',
+  },
   // globals: {
   //   'ts-jest': {
   //     tsconfig: 'tsconfig.json',

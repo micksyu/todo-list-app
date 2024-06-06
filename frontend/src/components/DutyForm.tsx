@@ -34,6 +34,7 @@ const DutyForm: React.FC<DutyFormProps> = ({ addDuty }) => {
       await addDuty({ title, description, completed: false });
       setTitle('');
       setDescription('');
+      setCompleted(false);
       message.success('Duty added successfully!');
     }
   };
@@ -41,16 +42,34 @@ const DutyForm: React.FC<DutyFormProps> = ({ addDuty }) => {
   return (
     <form>
       <div className="ant-form-item">
-        <label>Title</label>
-        <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          style={{ borderColor: titleError ? 'red' : '' }}
+        />
+        {titleError && <div style={{ color: 'red' }}>{titleError}</div>}
       </div>
       <div className="ant-form-item">
-        <label>Description</label>
-        <input placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <label htmlFor="description">Description</label>
+        <input
+          id="description"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          style={{ borderColor: descriptionError ? 'red' : '' }}
+        />
+        {descriptionError && <div style={{ color: 'red' }}>{descriptionError}</div>}
       </div>
       <div className="ant-form-item">
         <label>
-          <input type="checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={completed}
+            onChange={(e) => setCompleted(e.target.checked)}
+          />
           Completed
         </label>
       </div>
