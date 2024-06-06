@@ -35,6 +35,46 @@ Replace `your_database_user`, `your_database_password`, and `your_database_name`
 
 The PostgreSQL database is configured to run in a Docker container. The configuration details are specified in the `docker-compose.yml` file.
 
+```sh
+version: '1.0'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_BASE_URL=http://localhost:3000
+    depends_on:
+      - backend
+  db:
+    image: postgres:alpine3.20
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dutiesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres-data:
+```
+
 ### Running the Application
 
 #### Using Docker
