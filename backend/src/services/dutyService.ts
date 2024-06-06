@@ -15,7 +15,6 @@ export const addDuty = async (duty: Duty): Promise<Duty> => {
 };
 
 export const updateDutyById = async (id: number, duty: Partial<Duty>): Promise<Duty> => {
-  console.log([duty.title, duty.description, duty.completed, id]);
   const result = await query(
     'UPDATE duties SET title = $1, description = $2, completed = $3 WHERE id = $4 RETURNING *',
     [duty.title, duty.description, duty.completed, id]
