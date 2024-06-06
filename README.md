@@ -33,32 +33,11 @@ Replace `your_database_user`, `your_database_password`, and `your_database_name`
 
 ### PostgreSQL Configuration Using Docker
 
-The PostgreSQL database is configured to run in a Docker container. The configuration details are specified in the `docker-compose.yml` file.
+The `docker-compose.yml` file includes the following configuration for the PostgreSQL service:
 
-```sh
-version: '1.0'
-
+```yaml
 services:
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "3000:3000"
-    env_file:
-      - ./backend/.env
-    depends_on:
-      - db
-
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "3001:3001"
-    environment:
-      - NODE_ENV=development
-      - REACT_APP_API_BASE_URL=http://localhost:3000
-    depends_on:
-      - backend
+  ...
   db:
     image: postgres:alpine3.20
     environment:
@@ -70,10 +49,23 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-volumes:
-  postgres-data:
 ```
+
+This configuration sets up the PostgreSQL service with the necessary environment variables and initializes the database using the `init.sql` script.
+
+```sql
+CREATE TABLE IF NOT EXISTS duties (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+INSERT INTO duties (title, description, completed) VALUES
+('Duty 1', 'Description 1', false),
+('Duty 2', 'Description 2', true);
+```
+
 
 ### Running the Application
 
