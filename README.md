@@ -1,6 +1,3 @@
-Sure! Here is the complete `README.md` content enclosed within a code block:
-
-```markdown
 # To-Do List App
 
 This is a simple To-Do List application built with a Node.js backend and a React frontend. The project is containerized using Docker.
