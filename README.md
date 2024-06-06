@@ -6,6 +6,7 @@ This is a simple To-Do List application built with a Node.js backend and a React
 
 - Docker
 - Docker Compose
+- Node.js v22.2.0 (for running without Docker or test)
 
 ## Getting Started
 
@@ -113,46 +114,53 @@ The backend is a Node.js application using Express and PostgreSQL. It provides a
 
 The frontend is a React application that interacts with the backend API to display and manage to-do list items.
 
-## Project Structure
+## Project Structure (Simpify version)
 
 ```
-│
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── middlewares/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── app.ts
-│   │   ├── db.ts
-│   │   └── server.ts
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── .env
-│   └── README.md
-│
-├── frontend/
-│   ├── public/
-│   │   ├── index.html
-│   ├── src/
-│   │   ├── api/
-│   │   ├── components/
-│   │   ├── styles/
-│   │   ├── App.tsx
-│   │   ├── index.tsx
-│   │   └── types/
-│   ├── tests/
-│   │   ├── App.test.tsx
-│   │   ├── DeleteModal.test.tsx
-│   │   ├── DutyForm.test.tsx
-│   │   └── DutyList.test.tsx
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── README.md
-│
+todo-list-app
+├── backend
+│   ├── app.ts
+│   ├── config.ts
+│   ├── server.ts
+│   ├── config
+│   │   └── index.ts
+│   ├── controllers
+│   │   └── dutyController.ts
+│   ├── db
+│   │   └── db.ts
+│   ├── errors
+│   │   ├── BadRequestError.ts
+│   │   ├── CustomError.ts
+│   │   └── NotFoundError.ts
+│   ├── middleware
+│   │   └── errorHandler.ts
+│   ├── routes
+│   │   └── dutyRoutes.ts
+│   └── services
+│       └── dutyService.ts
+├── frontend
+│   ├── public
+│   │   └── index.html
+│   └── src
+│       ├── App.tsx
+│       ├── index.tsx
+│       ├── components
+│       │   ├── DeleteModal.tsx
+│       │   ├── DutyForm.tsx
+│       │   └── DutyList.tsx
+│       ├── services
+│       │   └── dutyService.ts
+│       ├── tests
+│       │   ├── App.test.tsx
+│       │   ├── DeleteModal.test.tsx
+│       │   ├── DutyForm.test.tsx
+│       │   ├── DutyList.test.tsx
+│       │   └── setupTests.ts
+│       └── styles
+│           └── style.css
+├── init.sql
 ├── docker-compose.yml
-└── README.md
+
 ```
 
 ## Running Tests
