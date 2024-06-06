@@ -41,32 +41,41 @@ The frontend is a React application that interacts with the backend API to displ
 ## Project Structure
 
 ```
-todo-list-app/
 │
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
+│   │   ├── middlewares/
 │   │   ├── models/
 │   │   ├── routes/
 │   │   ├── services/
-│   │   └── index.ts
-│   ├── tests/
-│   ├── Dockerfile
-│   └── package.json
+│   │   ├── app.ts
+│   │   ├── db.ts
+│   │   └── server.ts
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── .env
+│   └── README.md
 │
 ├── frontend/
+│   ├── public/
+│   │   ├── index.html
 │   ├── src/
-│   │   ├── components/
 │   │   ├── api/
-│   │   ├── types/
+│   │   ├── components/
+│   │   ├── styles/
 │   │   ├── App.tsx
 │   │   ├── index.tsx
-│   │   └── styles/
+│   │   └── types/
 │   ├── tests/
-│   ├── public/
-│   ├── Dockerfile
-│   ├── webpack.config.js
-│   └── package.json
+│   │   ├── App.test.tsx
+│   │   ├── DeleteModal.test.tsx
+│   │   ├── DutyForm.test.tsx
+│   │   └── DutyList.test.tsx
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── .env
+│   └── README.md
 │
 ├── docker-compose.yml
 └── README.md
