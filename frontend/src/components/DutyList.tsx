@@ -11,10 +11,16 @@ interface DutyListProps {
 const DutyList: React.FC<DutyListProps> = ({ duties, deleteDuty, updateDuty }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingDuty, setEditingDuty] = useState<Duty | null>(null);
+  const [form] = Form.useForm();
 
   const showModal = (duty: Duty) => {
     setEditingDuty(duty);
     setIsModalVisible(true);
+    form.setFieldsValue({
+      title: duty.title,
+      description: duty.description,
+      completed: duty.completed,
+    });
   };
 
   const handleOk = (values: { title: string; description: string; completed: boolean }) => {
@@ -60,6 +66,7 @@ const DutyList: React.FC<DutyListProps> = ({ duties, deleteDuty, updateDuty }) =
       >
         {editingDuty && (
           <Form
+            form={form}
             initialValues={{
               title: editingDuty.title,
               description: editingDuty.description,
