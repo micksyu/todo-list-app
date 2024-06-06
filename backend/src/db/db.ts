@@ -9,4 +9,10 @@ const pool = new Pool({
   database: config.db.database,
 });
 
-export default pool;
+export const query = (text: string, params?: any[]) => {
+  return pool.query(text, params);
+};
+
+export const closePool = () => {
+  return pool.end();
+};

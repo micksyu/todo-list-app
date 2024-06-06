@@ -9,8 +9,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["jest", "@testing-library/jest-dom", "node"]
+    // "types": ["@testing-library/jest-dom/jest-globals"]
+    // "types": ["jest", "node"]
   },
   "include": ["src", "test"],
-  "exclude": ["node_modules", "dist"]
+  // "include": [
+  //   "./src/**/**.*",
+  // ],
+  // "exclude": ["node_modules", "dist"]
 }

@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     env_file:
-      - .env
+      - ./backend/.env
     depends_on:
       - db
 
@@ -18,7 +18,7 @@ services:
       - "3001:3001"
     environment:
       - NODE_ENV=development
-      - REACT_APP_BACKEND_URL=http://localhost:3001
+      - REACT_APP_API_BASE_URL=http://localhost:3000
     depends_on:
       - backend
   db:
@@ -31,6 +31,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   postgres-data:

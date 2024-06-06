@@ -6,6 +6,7 @@ export const getDuties = async (req: Request, res: Response) => {
     const duties = await getAllDuties();
     res.status(200).json(duties);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: 'Failed to fetch duties' });
   }
 };

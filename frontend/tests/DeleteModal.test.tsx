@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import DeleteModal from '../src/components/DeleteModal';
+import '@testing-library/jest-dom';
+
 
 test('renders DeleteModal and handles confirm and cancel actions', async () => {
   const mockOnConfirm = jest.fn();

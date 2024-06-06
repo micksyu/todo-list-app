@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ant-form-item {
+    margin-bottom: 16px;
+}
+
+button {
+    align-self: center;
+}
+
+button.ant-btn {
+    margin: 0 1em;
+}
+
+li.ant-list-item span:nth-child(1) {
+    flex: auto;
+}
+
+.duty-list {
+    margin-top: 20px;
+}
+
+.duty-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.duty-item:last-child {
+    border-bottom: none;
+}
+
+.duty-title {
+    font-weight: bold;
+}
+
+.duty-description {
+    color: #777;
+}
+
+.duty-actions {
+    display: flex;
+    gap: 10px;
+}

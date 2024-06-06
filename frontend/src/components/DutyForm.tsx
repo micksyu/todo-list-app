@@ -1,43 +1,61 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
-import { Duty } from '../types/duty'; // Add this import
+import { Form, Input, Button, message } from 'antd';
+import { Duty } from '../types/duty';
 
 interface DutyFormProps {
-  addDuty: (duty: Duty) => void;
+  addDuty: (duty: Duty) => Promise<void>;
 }
 
 const DutyForm: React.FC<DutyFormProps> = ({ addDuty }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [titleError, setTitleError] = useState('');
+  const [descriptionError, setDescriptionError] = useState('');
+  const [completed, setCompleted] = useState(false);
 
-  const handleSubmit = () => {
-    addDuty({ title, description, completed: false });
-    setTitle('');
-    setDescription('');
+  const handleSubmit = async () => {
+    let valid = true;
+
+    if (title.trim() === '') {
+      setTitleError('Please enter the title');
+      valid = false;
+    } else {
+      setTitleError('');
+    }
+
+    if (description.trim() === '') {
+      setDescriptionError('Please enter the description');
+      valid = false;
+    } else {
+      setDescriptionError('');
+    }
+
+    if (valid) {
+      await addDuty({ title, description, completed: false });
+      setTitle('');
+      setDescription('');
+      message.success('Duty added successfully!');
+    }
   };
 
   return (
-    <Form layout="inline" onFinish={handleSubmit}>
-      <Form.Item>
-        <Input
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </Form.Item>
-      <Form.Item>
-        <Input
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Add Duty
-        </Button>
-      </Form.Item>
-    </Form>
+    <form>
+      <div className="ant-form-item">
+        <label>Title</label>
+        <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      </div>
+      <div className="ant-form-item">
+        <label>Description</label>
+        <input placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+      </div>
+      <div className="ant-form-item">
+        <label>
+          <input type="checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
+          Completed
+        </label>
+      </div>
+      <button type="button" onClick={handleSubmit}>Add Duty</button>
+    </form>
   );
 };
 
