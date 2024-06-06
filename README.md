@@ -18,17 +18,60 @@ cd todo-list-app
 
 ### Running the Application
 
-1. **Start the Backend and Frontend using Docker Compose**
+### Backend Configuration
 
-   ```bash
-   docker-compose up --build
-   ```
+1. Create a `.env` file in the `backend` directory with the following content:
+```
+DB_HOST=postgres
+DB_PORT=5432
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+```
 
-   This command will build and start the backend and frontend services. The backend will be running on port 3000, and the frontend will be running on port 3001.
+Replace `your_database_user`, `your_database_password`, and `your_database_name` with your actual database configuration details.
 
-2. **Access the Frontend**
+### PostgreSQL Configuration Using Docker
+
+The PostgreSQL database is configured to run in a Docker container. The configuration details are specified in the `docker-compose.yml` file.
+
+### Running the Application
+
+#### Using Docker
+
+1. Ensure Docker is installed and running on your machine.
+2. Run the following command in the root directory:
+```sh
+docker-compose up --build
+```
+
+This will build and start the backend and frontend services, along with a PostgreSQL database on port 5432.
+The backend will be running on port 3000, and the frontend will be running on port 3001.
+
+3. **Access the Frontend**
 
    Open your browser and navigate to `http://localhost:3001`.
+
+4. To stop and remove all running containers, networks, and volumes, run:
+```sh
+docker-compose down
+```
+
+#### Without Docker
+
+1. Start the backend:
+```sh
+cd backend
+npm run build
+npm start
+```
+
+2. Start the frontend:
+```sh
+cd ../frontend
+npm run build
+npm start
+```
 
 ### Backend
 
@@ -74,7 +117,6 @@ The frontend is a React application that interacts with the backend API to displ
 │   │   └── DutyList.test.tsx
 │   ├── package.json
 │   ├── tsconfig.json
-│   ├── .env
 │   └── README.md
 │
 ├── docker-compose.yml
@@ -113,15 +155,19 @@ npm test
 
 #### Add Duty
 
-![Add Duty](screenshots/add-duty.png)
+![Add Duty -1](screenshots/add-duty-1.png)
+![Add Duty -2](screenshots/add-duty-2.png)
 
 #### Edit Duty
 
-![Edit Duty](screenshots/edit-duty.png)
+![Edit Duty -1](screenshots/edit-duty-1.png)
+![Edit Duty -2](screenshots/edit-duty-2.png)
 
 #### Delete Duty
 
-![Delete Duty](screenshots/delete-duty.png)
+![Delete Duty -1](screenshots/delete-duty-1.png)
+![Delete Duty -2](screenshots/delete-duty-2.png)
+![Delete Duty -3](screenshots/delete-duty-3.png)
 
 ## Contributing
 
